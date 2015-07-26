@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: GeekGearGovernor
+        psr4_prefix: GeekGearGovernor
+        src_path: app
