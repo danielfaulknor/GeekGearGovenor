@@ -43,12 +43,14 @@
                 <td>{{ $item->sale ? 'Yes' : 'No' }}</td>
                 <td>{{ $item->public ? 'Yes' : 'No' }}</td>
                 <td><a href="{{url('items',$item->id)}}" class="btn btn-primary">View</a></td>
+                @if (Auth::check())
                 <td><a href="{{route('items.edit',$item->id)}}" class="btn btn-warning">Update</a></td>
                 <td>
                   {!! Form::open(['method' => 'DELETE', 'route'=>['items.destroy', $item->id]]) !!}
                   {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                   {!! Form::close() !!}
                 </td>
+                @endif
               </tr>
           @endforeach
      </tbody>

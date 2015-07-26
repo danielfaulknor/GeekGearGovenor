@@ -29,6 +29,8 @@ class Item extends \Illuminate\Database\Eloquent\Model
       'new',
       'sale',
       'public',
+      'missing_parts',
+      'serial'
     ];
 
 
