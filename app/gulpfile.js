@@ -12,5 +12,13 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.sass('app.scss');
+    mix.styles([
+      'vendor/bootstrap-tagsinput.css',
+    ]);
+
+    mix.scripts([
+       'vendor/bootstrap-tagsinput.js',
+   ]);
+
+     mix.version(['css/all.css', 'js/app.js']);
 });

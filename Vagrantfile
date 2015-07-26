@@ -15,7 +15,7 @@ mysql -u root -p'vagrant' GeekGearGovenor < /vagrant/extra/database.sql
 curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
 composer global require "laravel/installer=~1.1"
-cd /vagrant
+cd /vagrant/app
 composer install
 
 # Install ElasticSearch
@@ -26,6 +26,17 @@ dpkg -i elasticsearch-1.7.0.deb
 rm elasticsearch-1.7.0.deb
 /bin/systemctl daemon-reload
 /bin/systemctl enable elasticsearch.service
+
+# Install nodejs
+apt-get -y install nodejs npm
+ln -s /usr/bin/nodejs /usr/bin/node
+cd /vagrant/app
+npm install --global gulp
+npm install
+gulp
+
+# Fix apache vhost
+mv /vagrant/extras/default.conf /etc/apache2/sites-available/
 
 # Identify Environment
 touch /vagrant/VagrantDev.txt
@@ -44,6 +55,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
    config.vm.provider "virtualbox" do |v|
      v.memory = 1024
      v.cpus = 2
+     v.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/vagrant", "1"]
    end
 
 end

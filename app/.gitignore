@@ -3,3 +3,6 @@
 Homestead.yaml
 .env
 .vagrant/
+public/build
+public/css
+public/js
