@@ -20,5 +20,5 @@ elixir(function(mix) {
        'vendor/bootstrap-tagsinput.js',
    ]);
 
-     mix.version(['css/all.css', 'js/app.js']);
+     mix.version(['css/all.css', 'js/all.js']);
 });
