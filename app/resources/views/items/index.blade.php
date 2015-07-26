@@ -1,7 +1,7 @@
 @extends('template')
 
 @section('content')
- <h1>Asset Management</h1>
+ <h1>Items</h1>
  @if (Auth::check())
  <a href="{{url('/items/create')}}" class="btn btn-success">Create Item</a>
  @endif
