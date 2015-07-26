@@ -22,6 +22,18 @@
             </div>
         </div>
         <div class="form-group">
+            <label for="missing_parts" class="col-sm-2 control-label">Missing Parts</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="missing_parts" placeholder="{{$item->missing_parts}}" readonly>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="serial" class="col-sm-2 control-label">Serial Number</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="serial" placeholder="{{$item->serial}}" readonly>
+            </div>
+        </div>
+        <div class="form-group">
             <label for="quantity" class="col-sm-2 control-label">Quantity</label>
             <div class="col-sm-1">
                 <input type="text" class="form-control" id="quantity" placeholder={{$item->quantity}} readonly>

@@ -3,6 +3,8 @@
 namespace GeekGearGovernor\Http\Controllers;
 
 use Request;
+use Input;
+use Auth;
 
 use GeekGearGovernor\Http\Requests;
 use GeekGearGovernor\Http\Controllers\Controller;
@@ -18,7 +20,25 @@ class ItemController extends Controller
      */
     public function index()
     {
-      $items = Item::all();
+      // Check if user has sent a search query
+      if($query = Input::get('query', false)) {
+        // Use the Elasticquent search method to search ElasticSearch
+        $items = Item::search($query);
+        if (!Auth::check()) {
+            foreach ($items as $key => $item) {
+                if ($item['public'] == 0) { unset($items[$key]); }
+            }
+        }
+      } else {
+        if (!Auth::check()) {
+            // Get public items
+            $items = Item::where('public', 1)->get();
+        } else {
+            // Show all items if no query is set
+            $items = Item::all();
+        }
+      }
+
       return view('items.index',compact('items'));
     }
 
@@ -42,7 +62,8 @@ class ItemController extends Controller
     {
       $item = Request::all();
       $item['barcode'] = str_pad($item['barcode'],5,"0",STR_PAD_LEFT);
-      item::create($item);
+      $itemCreated = item::create($item);
+      $itemCreated->addToIndex();
       return redirect('items');
     }
 
@@ -83,6 +104,7 @@ class ItemController extends Controller
       $itemUpdate['barcode'] = str_pad($itemUpdate['barcode'],5,"0",STR_PAD_LEFT);
       $item = Item::find($id);
       $item->update($itemUpdate);
+      $item->reIndex();
       return redirect('items');
     }
 

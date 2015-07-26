@@ -15,6 +15,14 @@
         {!! Form::text('description',null,['class'=>'form-control']) !!}
     </div>
     <div class="form-group">
+        {!! Form::label('Missing Parts', 'Missing Parts:') !!}
+        {!! Form::text('missing_parts',null,['class'=>'form-control']) !!}
+    </div>
+    <div class="form-group">
+        {!! Form::label('Serial Number', 'Serial Number:') !!}
+        {!! Form::text('serial',null,['class'=>'form-control']) !!}
+    </div>  
+    <div class="form-group">
         {!! Form::label('Quantity', 'Quantity:') !!}
         {!! Form::text('quantity',null,['class'=>'form-control']) !!}
     </div>
