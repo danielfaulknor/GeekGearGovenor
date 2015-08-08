@@ -28,7 +28,9 @@
          <th>Description</th>
          <th>Tags</th>
          <th>Missing Parts</th>
+         @if (Auth::check() && Auth::user()->can('view-serials'))
          <th>Serial Number</th>
+         @endif
          <th>Quantity</th>
          <th>Value</th>
          <th>New</th>
@@ -45,7 +47,9 @@
                 <td>{{ $item->description }}</td>
                 <td>{{ $item->tagslist }}</td>
                 <td>{{ $item->missing_parts }}</td>
+                @if (Auth::check() && Auth::user()->can('view-serials'))
                 <td>{{ $item->serial }}</td>
+                @endif
                 <td>{{ $item->quantity }}</td>
                 <td>{{ $item->value }}</td>
                 <td>{{ $item->new ? 'Yes' : 'No' }}</td>

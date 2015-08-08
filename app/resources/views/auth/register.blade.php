@@ -1,6 +1,7 @@
 @extends('template')
 
 @section('content')
+<h1>Register</h1>
 <form method="POST" action="/auth/register">
     {!! csrf_field() !!}
 

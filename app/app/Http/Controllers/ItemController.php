@@ -27,21 +27,21 @@ class ItemController extends Controller
       if($query = Input::get('query', false)) {
         // Use the Elasticquent search method to search ElasticSearch
         $items = Item::search($query);
-        if (!Auth::check()) {
+        if (!Auth::check() || !Auth::user()->can('view-private-assets')) {
             foreach ($items as $key => $item) {
                 if ($item['public'] == 0) { unset($items[$key]); }
             }
         }
       } elseif ($query = Input::get('tagquery', false)){
         $items = Item::withAnyTag($query)->get();
-        if (!Auth::check()) {
+        if (!Auth::check() || !Auth::user()->can('view-private-assets')) {
             foreach ($items as $key => $item) {
                 if ($item['public'] == 0) { unset($items[$key]); }
             }
         }
       }
       else {
-        if (!Auth::check()) {
+        if (!Auth::check() || !Auth::user()->can('view-private-assets')) {
             // Get public items
             $items = Item::where('public', 1)->get();
         } else {

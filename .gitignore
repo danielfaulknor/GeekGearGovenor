@@ -1,2 +1,4 @@
 .vagrant/
 VagrantDev.txt
+
+app/composer.lock
