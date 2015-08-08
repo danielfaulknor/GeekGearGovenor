@@ -2,7 +2,7 @@
 
 @section('content')
  <h1>Items</h1>
- @if (Auth::check())
+ @if (Auth::check() && Auth::user()->can('create-assets'))
  <a href="{{url('/items/create')}}" class="btn btn-success">Create Item</a>
  @endif
  <hr>

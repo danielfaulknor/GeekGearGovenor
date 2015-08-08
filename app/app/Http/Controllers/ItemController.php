@@ -85,9 +85,19 @@ class ItemController extends Controller
     {
       $item = Request::all();
       $item['barcode'] = str_pad($item['barcode'],5,"0",STR_PAD_LEFT);
+      if(!isset($item['public'])){
+        $item['public'] = 0; //or whatever you want
+      }
+      if(!isset($itemUpdate['new'])){
+        $itemUpdate['new'] = 0; //or whatever you want
+      }
+      if(!isset($itemUpdate['sale'])){
+        $itemUpdate['sale'] = 0; //or whatever you want
+      }
       $itemCreated = item::create($item);
       $itemCreated->addToIndex();
-      return redirect('items');
+      var_dump($item);
+      //return redirect('items');
     }
 
     /**
@@ -133,6 +143,15 @@ class ItemController extends Controller
     {
       $itemUpdate=Request::all();
       $itemUpdate['barcode'] = str_pad($itemUpdate['barcode'],5,"0",STR_PAD_LEFT);
+      if(!isset($itemUpdate['public'])){
+        $itemUpdate['public'] = 0; //or whatever you want
+      }
+      if(!isset($itemUpdate['new'])){
+        $itemUpdate['new'] = 0; //or whatever you want
+      }
+      if(!isset($itemUpdate['sale'])){
+        $itemUpdate['sale'] = 0; //or whatever you want
+      }
       $item = Item::find($id);
       $item->update($itemUpdate);
       $item->reIndex();
