@@ -12,6 +12,13 @@
   {!! Form::submit('Filter results') !!}
   {!! link_to_action('ItemController@index', $title = "Clear", $parameters = array(), $attributes = array()) !!}
 {!! Form:: close() !!}
+<br />
+{!! Form::open(['method' => 'get']) !!}
+
+ {!! Form::input('search', 'tagquery', Input::get('tagquery', '')) !!}
+ {!! Form::submit('Filter by tag') !!}
+ {!! link_to_action('ItemController@index', $title = "Clear", $parameters = array(), $attributes = array()) !!}
+{!! Form:: close() !!}
 <hr>
  <table class="table table-striped table-bordered table-hover">
      <thead>
@@ -19,6 +26,7 @@
          <th>Barcode</th>
          <th>Title</th>
          <th>Description</th>
+         <th>Tags</th>
          <th>Missing Parts</th>
          <th>Serial Number</th>
          <th>Quantity</th>
@@ -35,6 +43,7 @@
                 <td>{{ $item->barcode }}</td>
                 <td>{{ $item->title }}</td>
                 <td>{{ $item->description }}</td>
+                <td>{{ $item->tagslist }}</td>
                 <td>{{ $item->missing_parts }}</td>
                 <td>{{ $item->serial }}</td>
                 <td>{{ $item->quantity }}</td>

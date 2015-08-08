@@ -33,5 +33,4 @@ class Item extends \Illuminate\Database\Eloquent\Model
       'serial'
     ];
 
-
 }

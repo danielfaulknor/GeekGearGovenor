@@ -22,6 +22,12 @@
             </div>
         </div>
         <div class="form-group">
+            <label for="description" class="col-sm-2 control-label">Tags</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="tags" placeholder="{{$item->tagslist}}" readonly>
+            </div>
+        </div>
+        <div class="form-group">
             <label for="missing_parts" class="col-sm-2 control-label">Missing Parts</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="missing_parts" placeholder="{{$item->missing_parts}}" readonly>

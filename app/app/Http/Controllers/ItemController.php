@@ -11,8 +11,11 @@ use GeekGearGovernor\Http\Controllers\Controller;
 
 use GeekGearGovernor\Item;
 
+use GeekGearGovernor\Classes\Tools;
+
 class ItemController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -29,7 +32,15 @@ class ItemController extends Controller
                 if ($item['public'] == 0) { unset($items[$key]); }
             }
         }
-      } else {
+      } elseif ($query = Input::get('tagquery', false)){
+        $items = Item::withAnyTag($query)->get();
+        if (!Auth::check()) {
+            foreach ($items as $key => $item) {
+                if ($item['public'] == 0) { unset($items[$key]); }
+            }
+        }
+      }
+      else {
         if (!Auth::check()) {
             // Get public items
             $items = Item::where('public', 1)->get();
@@ -37,6 +48,18 @@ class ItemController extends Controller
             // Show all items if no query is set
             $items = Item::all();
         }
+      }
+
+
+      foreach ($items as $key => $item) {
+
+        $tags = "";
+        foreach ($item->tags as $tag) {
+          $tags[] = $tag->name;
+        }
+        if (is_array($tags)) {
+            $items[$key]['tagslist'] = implode(", ", $tags);
+        } else { $tags = "None"; }
       }
 
       return view('items.index',compact('items'));
@@ -76,6 +99,14 @@ class ItemController extends Controller
     public function show($id)
     {
       $item = Item::find($id);
+      $tags = "";
+      foreach ($item->tags as $tag) {
+          $tags[] = $tag->name;
+      }
+      if (is_array($tags)) {
+        $item['tagslist'] = implode(", ", $tags);
+      } else { $tags = "None"; }
+
       return view('items.show',compact('item'));
     }
 
@@ -119,4 +150,5 @@ class ItemController extends Controller
       Item::find($id)->delete();
       return redirect('items');
     }
+
 }

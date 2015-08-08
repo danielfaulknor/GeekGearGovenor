@@ -196,10 +196,10 @@ return [
         'Schema'    => Illuminate\Support\Facades\Schema::class,
         'Session'   => Illuminate\Support\Facades\Session::class,
         'Storage'   => Illuminate\Support\Facades\Storage::class,
+        'Tools'     => '\GeekGearGovernor\Classes\Tools',
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
-
 
     ],
 

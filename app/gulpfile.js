@@ -14,10 +14,13 @@ var elixir = require('laravel-elixir');
 elixir(function(mix) {
     mix.styles([
       'vendor/bootstrap-tagsinput.css',
+      'vendor/typeaheadjs.css',
+      'typeahead.css',
     ]);
 
     mix.scripts([
-       'vendor/bootstrap-tagsinput.js',
+      'vendor/typeahead.bundle.js',
+      'vendor/bootstrap-tagsinput.js',
    ]);
 
      mix.version(['css/all.css', 'js/all.js']);
