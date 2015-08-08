@@ -96,8 +96,9 @@ class ItemController extends Controller
       }
       $itemCreated = item::create($item);
       $itemCreated->addToIndex();
-      var_dump($item);
-      //return redirect('items');
+      $tags = explode(',', $item['tags']);
+      $itemCreated->retag($tags);
+      return redirect('items');
     }
 
     /**
