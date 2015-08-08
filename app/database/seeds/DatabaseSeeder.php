@@ -47,6 +47,12 @@ public function run()
     $owner->description  = 'User is the owner of the assets'; // optional
     $owner->save();
 
+    $viewall = new Role();
+    $viewall->name         = 'viewall';
+    $viewall->display_name = 'View All'; // optional
+    $viewall->description  = 'User can view all assets'; // optional
+    $viewall->save();
+
     $editUser = new Permission();
     $editUser->name         = 'edit-user';
     $editUser->display_name = 'Edit Users'; // optional
@@ -61,7 +67,8 @@ public function run()
     // Allow a user to...
     $viewPrivateAssets->description  = 'view private assets'; // optional
     $viewPrivateAssets->save();
-    $owner->attachPermission($viewPrivateAssets);
+    //$owner->attachPermission($viewPrivateAssets);
+    $viewall->attachPermission($viewPrivateAssets);
 
     $viewSerials = new Permission();
     $viewSerials->name         = 'view-serials';
@@ -70,6 +77,14 @@ public function run()
     $viewSerials->description  = 'view asset serials'; // optional
     $viewSerials->save();
     $owner->attachPermission($viewSerials);
+
+    $createAssets = new \GeekGearGovernor\Permission();
+    $createAssets->name         = 'create-assets';
+    $createAssets->display_name = 'Create Assets'; // optional
+    // Allow a user to...
+    $createAssets->description  = 'create assets'; // optional
+    $createAssets->save();
+    $owner->attachPermission($createAssets);
 
 }
 

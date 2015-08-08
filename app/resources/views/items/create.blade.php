@@ -40,7 +40,7 @@
     </div>
     <div class="form-group">
         {!! Form::label('Public', 'Public:') !!}
-        {!! Form::checkbox('public',1,true,['class'=>'form-control']) !!}
+        {!! Form::checkbox('public',1,false,['class'=>'form-control']) !!}
     </div>
     <div class="form-group">
         {!! Form::submit('Save', ['class' => 'btn btn-primary form-control']) !!}
