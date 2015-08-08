@@ -52,7 +52,7 @@ class ItemController extends Controller
 
 
       foreach ($items as $key => $item) {
-        //$item['barcode'] = str_pad($item['barcode'],5,"0",STR_PAD_LEFT);
+        $item['barcode'] = str_pad($item['barcode'],5,"0",STR_PAD_LEFT);
         $tags = "";
         foreach ($item->tags as $tag) {
           if ($tag) { $tags[] = $tag->name; }
