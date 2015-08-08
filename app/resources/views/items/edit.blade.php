@@ -78,7 +78,7 @@
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace,
       queryTokenizer: Bloodhound.tokenizers.whitespace,
       remote: {
-        url: '/query?type=tags',
+        url: '/query?type=tags&query=%QUERY',
         dataType: 'json',
       },
       prefetch: {
@@ -100,7 +100,8 @@
         source: engine.ttAdapter(),
         hint: true,
         highlight: true,
-        minLength: 2
+        minLength: 3,
+        limit: 3
       }
     });
 

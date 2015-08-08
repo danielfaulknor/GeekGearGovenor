@@ -18,8 +18,14 @@ class SearchController extends Controller
 
         switch(Input::get('type')) {
             case "tags":
-                $query = Input::get('user');
-                foreach(\Conner\Tagging\Tag::get() as $tag) {
+                $query = Input::get('query');
+                if ($query) {
+                  $taglistreturned = \Conner\Tagging\Tag::where('name', 'LIKE', '%'.$query.'%')->get();
+                }
+                else {
+                  $taglistreturned = \Conner\Tagging\Tag::get();
+                }
+                foreach($taglistreturned as $tag) {
                    $tags[] = array("name" => $tag['attributes']['name']);
                 }
                 return Response::json($tags);
