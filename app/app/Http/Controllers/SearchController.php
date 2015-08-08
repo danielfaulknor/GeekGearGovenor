@@ -28,7 +28,7 @@ class SearchController extends Controller
                 foreach($taglistreturned as $tag) {
                    $tags[] = array("name" => $tag['attributes']['name']);
                 }
-                return Response::json($tags);
+                if (is_array($tags)) { return Response::json($tags); }
                 break;
         }
 

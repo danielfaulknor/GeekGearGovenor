@@ -55,7 +55,7 @@ class ItemController extends Controller
 
         $tags = "";
         foreach ($item->tags as $tag) {
-          $tags[] = $tag->name;
+          if ($tag) { $tags[] = $tag->name; }
         }
         if (is_array($tags)) {
             $items[$key]['tagslist'] = implode(", ", $tags);

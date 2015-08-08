@@ -67,7 +67,7 @@ public function run()
     // Allow a user to...
     $viewPrivateAssets->description  = 'view private assets'; // optional
     $viewPrivateAssets->save();
-    //$owner->attachPermission($viewPrivateAssets);
+    $owner->attachPermission($viewPrivateAssets);
     $viewall->attachPermission($viewPrivateAssets);
 
     $viewSerials = new Permission();
@@ -85,6 +85,10 @@ public function run()
     $createAssets->description  = 'create assets'; // optional
     $createAssets->save();
     $owner->attachPermission($createAssets);
+
+    $user = User::where('email', '=', 'admin@admin.com')->first();
+    $user->attachRole($owner);
+
 
 }
 
