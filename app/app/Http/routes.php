@@ -24,6 +24,10 @@ Route::get('/home', function () {
     return view('welcome');
 });
 
+Route::get('/contact', function () {
+    return view('contact');
+});
+
 // Resources
 Route::resource('items','ItemController');
 

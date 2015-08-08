@@ -28,9 +28,9 @@ body {
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li><a href="/">Home</a></li>
+        <li><a href="/home">Home</a></li>
         <li>{!! link_to_action('ItemController@index', $title = "Items", $parameters = array(), $attributes = array()) !!}</li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="/contact">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         @if (!Auth::check())
