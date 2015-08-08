@@ -22,6 +22,12 @@
             </div>
         </div>
         <div class="form-group">
+            <label for="url" class="col-sm-2 control-label">URL</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="url" placeholder="{{$item->url}}" readonly>
+            </div>
+        </div>
+        <div class="form-group">
             <label for="description" class="col-sm-2 control-label">Tags</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="tags" placeholder="{{$item->tagslist}}" readonly>

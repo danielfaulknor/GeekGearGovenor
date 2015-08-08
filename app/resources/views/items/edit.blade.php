@@ -14,6 +14,10 @@
     <div class="form-group">
         {!! Form::label('Description', 'Description:') !!}
         {!! Form::text('description',null,['class'=>'form-control']) !!}
+    </div
+    <div class="form-group">
+        {!! Form::label('URL', 'URL:') !!}
+        {!! Form::text('url',null,['class'=>'form-control']) !!}
     </div>
     <div class="form-group" id="taginputdiv">
       {!! Form::label('Tags', 'Tags:') !!}

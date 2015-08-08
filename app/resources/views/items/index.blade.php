@@ -26,6 +26,7 @@
          <th>Barcode</th>
          <th>Title</th>
          <th>Description</th>
+         <th>URL</th>
          <th>Tags</th>
          <th>Missing Parts</th>
          @if (Auth::check() && Auth::user()->can('view-serials'))
@@ -45,6 +46,11 @@
                 <td>{{ $item->barcode }}</td>
                 <td>{{ $item->title }}</td>
                 <td>{{ $item->description }}</td>
+                @if ($item->url)
+                <td><a href="{{ $item->url }}" target="_blank">Link</a></td>
+                @else
+                <td></td>
+                @endif
                 <td>{{ $item->tagslist }}</td>
                 <td>{{ $item->missing_parts }}</td>
                 @if (Auth::check() && Auth::user()->can('view-serials'))

@@ -15,6 +15,10 @@
         {!! Form::label('Description', 'Description:') !!}
         {!! Form::text('description',null,['class'=>'form-control']) !!}
     </div>
+    <div class="form-group">
+        {!! Form::label('URL', 'URL:') !!}
+        {!! Form::text('url',null,['class'=>'form-control']) !!}
+    </div>
     <div class="form-group" id="taginputdiv">
       {!! Form::label('Tags', 'Tags:') !!}
       <input type="text" placeholder="Add tags.." name="tags"/>

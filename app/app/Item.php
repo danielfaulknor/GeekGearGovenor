@@ -30,7 +30,8 @@ class Item extends \Illuminate\Database\Eloquent\Model
       'sale',
       'public',
       'missing_parts',
-      'serial'
+      'serial',
+      'url'
     ];
 
 }
