@@ -26,14 +26,14 @@ class ItemController extends Controller
       // Check if user has sent a search query
       if($query = Input::get('query', false)) {
         // Use the Elasticquent search method to search ElasticSearch
-        $items = Item::search($query);
+        $items = Item::search($query)->orderBy('barcode', 'asc');
         if (!Auth::check() || !Auth::user()->can('view-private-assets')) {
             foreach ($items as $key => $item) {
                 if ($item['public'] == 0) { unset($items[$key]); }
             }
         }
       } elseif ($query = Input::get('tagquery', false)){
-        $items = Item::withAnyTag($query)->get();
+        $items = Item::withAnyTag($query)->orderBy('barcode', 'asc')->get();
         if (!Auth::check() || !Auth::user()->can('view-private-assets')) {
             foreach ($items as $key => $item) {
                 if ($item['public'] == 0) { unset($items[$key]); }
@@ -43,16 +43,16 @@ class ItemController extends Controller
       else {
         if (!Auth::check() || !Auth::user()->can('view-private-assets')) {
             // Get public items
-            $items = Item::where('public', 1)->get();
+            $items = Item::where('public', 1)->orderBy('barcode', 'asc')->get();
         } else {
             // Show all items if no query is set
-            $items = Item::all();
+            $items = Item::orderBy('barcode', 'asc')->get();
         }
       }
 
 
       foreach ($items as $key => $item) {
-
+        //$item['barcode'] = str_pad($item['barcode'],5,"0",STR_PAD_LEFT);
         $tags = "";
         foreach ($item->tags as $tag) {
           if ($tag) { $tags[] = $tag->name; }
@@ -96,8 +96,10 @@ class ItemController extends Controller
       }
       $itemCreated = item::create($item);
       $itemCreated->addToIndex();
-      $tags = explode(',', $item['tags']);
-      $itemCreated->retag($tags);
+      if ($item['tags']) {
+        $tags = explode(',', $item['tags']);
+        $itemCreated->retag($tags);
+      }
       return redirect('items');
     }
 
@@ -117,7 +119,7 @@ class ItemController extends Controller
       if (is_array($tags)) {
         $item['tagslist'] = implode(", ", $tags);
       } else { $tags = "None"; }
-
+      $item['barcode'] = str_pad($item['barcode'],5,"0",STR_PAD_LEFT);
       return view('items.show',compact('item'));
     }
 
@@ -143,7 +145,6 @@ class ItemController extends Controller
     public function update(Request $request, $id)
     {
       $itemUpdate=Request::all();
-      $itemUpdate['barcode'] = str_pad($itemUpdate['barcode'],5,"0",STR_PAD_LEFT);
       if(!isset($itemUpdate['public'])){
         $itemUpdate['public'] = 0; //or whatever you want
       }
