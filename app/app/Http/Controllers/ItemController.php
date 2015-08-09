@@ -26,7 +26,7 @@ class ItemController extends Controller
       // Check if user has sent a search query
       if($query = Input::get('query', false)) {
         // Use the Elasticquent search method to search ElasticSearch
-        $items = Item::search($query)->orderBy('barcode', 'asc');
+        $items = Item::search($query);
         if (!Auth::check() || !Auth::user()->can('view-private-assets')) {
             foreach ($items as $key => $item) {
                 if ($item['public'] == 0) { unset($items[$key]); }
