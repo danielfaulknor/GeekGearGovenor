@@ -1,4 +1,13 @@
 .vagrant/
 VagrantDev.txt
+GeekGearGovernor.sql
 
+app/vendor
+app/node_modules
+app/Homestead.yaml
+app/.env
+app/public/build
+app/public/css
+app/public/js
+app/app/storage
 app/composer.lock
