@@ -101,4 +101,4 @@ $('form').on('keyup keypress', function(e) {
 
 
     </script>
-@stop
+@endsection

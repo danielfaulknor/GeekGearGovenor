@@ -82,4 +82,4 @@
             </div>
         </div>
     </form>
-@stop
+@endsection
