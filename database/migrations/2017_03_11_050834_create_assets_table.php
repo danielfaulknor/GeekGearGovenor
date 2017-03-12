@@ -17,11 +17,11 @@ class CreateAssetsTable extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->bigInteger('quantity')->default(1);
-            $table->decimal('value', 5, 2)->nullable();
-            $table->integer('barcode');
-            $table->string('serial');
-            $table->string('missing_parts');
-            $table->text('photos');
+            $table->decimal('value', 8, 2)->nullable();
+            $table->integer('barcode')->nullable();
+            $table->string('serial')->nullable();
+            $table->string('missing_parts')->nullable();
+            $table->text('photos')->nullable();
             $table->text('url')->nullable();
             $table->boolean('sale')->default(false);
             $table->boolean('public')->default(true);

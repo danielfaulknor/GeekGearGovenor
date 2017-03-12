@@ -57,7 +57,7 @@ class AssetCrudController extends CrudController
             'wrapperAttributes' => [
                 'class' => 'col-md-2',
             ],
-        ])->afterField('title');
+        ]);
 
         $this->crud->addField([
             'name' => 'value',
@@ -82,6 +82,8 @@ class AssetCrudController extends CrudController
             'type' => 'textarea',
         ]);
 
+        $this->crud->removeColumn('missing_parts');
+
         $this->crud->addField([   
             'name' => 'photos',
             'label' => 'Photos',
@@ -93,6 +95,10 @@ class AssetCrudController extends CrudController
             ],
         ]);
 
+        $this->crud->setColumnDetails('photos', [
+            'type' => 'array'
+        ]);
+
         $this->crud->addField([
             'name' => 'url',
             'label' => 'URL',
@@ -100,6 +106,12 @@ class AssetCrudController extends CrudController
             'wrapperAttributes' => [
                 'class' => 'col-md-8',
             ],
+        ]);
+
+        $this->crud->setColumnDetails('url',[
+             'label' => "URL", // Table column heading
+             'type' => "model_function",
+             'function_name' => 'getUrlWithLink', // the method in your Model
         ]);
 
         $this->crud->addField([
@@ -110,6 +122,11 @@ class AssetCrudController extends CrudController
             ],
         ]);
 
+        $this->crud->setColumnDetails('sale', [
+            'label' => 'For Sale',
+            'type' => 'boolean',
+        ]);
+
         $this->crud->addField([
             'name' => 'public',
             'type' => 'checkbox',
@@ -118,12 +135,42 @@ class AssetCrudController extends CrudController
             ],
         ]);
 
+        $this->crud->setColumnDetails('public', [
+            'type' => 'boolean',
+        ]);
+
         $this->crud->addField([
             'name' => 'new',
             'type' => 'checkbox',
             'wrapperAttributes' => [
                 'class' => 'col-md-4',
             ],
+        ]);
+
+        $this->crud->setColumnDetails('new', [
+            'type' => 'boolean',
+        ]);
+
+        $this->crud->addField([
+            'name' => 'category_id',
+            'label' => 'Category',
+            'type' => 'select2',
+            'entity' => 'category',
+            'attribute' => 'title',
+            'model' => 'App\Models\Category',
+            'wrapperAttributes' => [
+                'class' => 'col-md-4',
+            ],
+        ]);
+
+
+        $this->crud->setColumnDetails('category_id', [
+            'name' => 'category_id',
+            'label' => 'Category',
+            'type' => 'select',
+            'entity' => 'category',
+            'attribute' => 'title',
+            'model' => 'App\Models\Category',
         ]);
 
     }
